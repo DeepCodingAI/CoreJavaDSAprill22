@@ -35,4 +35,9 @@ public class PaymentTerminal {
             System.out.println(amount + " has been paid by paypal");
         }
     }
+    private class PayByStableCoin{
+        private void payByPaypal(int amount){
+            System.out.println(amount + " has been paid by paypal");
+        }
+    }
 }
