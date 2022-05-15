@@ -11,6 +11,8 @@ public class PaymentTerminal {
             PayByCrypto.payByCrypto(amount);
         }else if(paymentType.equalsIgnoreCase("paypal")){
             PayByPaypal.payByPaypal(amount);
+        }else if (paymentType.equalsIgnoreCase("apple-pay")){
+            PayByApplePay.payByApplePay(amount);
         }
         System.out.println("payment has been processed successfully");
     }
@@ -35,9 +37,19 @@ public class PaymentTerminal {
             System.out.println(amount + " has been paid by paypal");
         }
     }
-    private class PayByStableCoin{
-        private void payByPaypal(int amount){
-            System.out.println(amount + " has been paid by paypal");
+    public static class PayByApplePay{
+        public static void payByApplePay(int amount){
+            Pay pay = new Pay(){
+                @Override
+                public void processPaymentByApplePay(int amount){
+                    System.out.println("System will take apple Pay the amount of:  " + amount);
+                }
+            };
+            pay.processPaymentByApplePay(amount);
+        }
+        @FunctionalInterface
+        public interface Pay{
+            void processPaymentByApplePay(int amount);
         }
     }
 }
